@@ -4,27 +4,87 @@ import Icon from '@/components/ui/icon';
 const HERO_IMG = "https://cdn.poehali.dev/projects/2470a998-bb78-4c10-ae3f-eaf1e3d86bc3/files/e71e398d-4128-4953-bb73-d00c6ed750e6.jpg";
 
 // ---------- DATA ----------
+const roadDistances = [
+  { id: 'mile', name: '1 миля', age: 'с 18 лет', icon: 'Footprints', color: '#60a5fa' },
+  { id: '5k', name: '5 км', age: 'с 14 лет', icon: 'Footprints', color: '#60a5fa' },
+  { id: '10k', name: '10 км', age: 'с 18 лет', icon: 'Footprints', color: '#60a5fa' },
+  { id: 'half', name: '21,1 км', age: 'с 18 лет', icon: 'Footprints', color: '#60a5fa' },
+];
+
+const trailDistances = [
+  {
+    id: 'trail25',
+    km: 25,
+    name: '25 км. Круг трёх озёр',
+    shortDesc: 'Идеальный вход в трейлраннинг. Живописная трасса вокруг озёр Барахтан, Уфимское, Серебры. Набор высоты 550 м.',
+    gain: 550,
+    color: '#f97316',
+    icon: 'Mountain',
+    fullDesc: [
+      'Эта дистанция — идеальный выбор для тех, кто хочет попробовать себя в трейлраннинге, но не готов к серьёзному набору высоты. Общий набор высоты на 25 км составит около 550 метров. Трасса пройдёт по живописному кругу, соединяющему три уникальных озера — настоящих природных жемчужины Челябинской области.',
+    ],
+    highlights: [
+      {
+        icon: '🏞️',
+        title: 'Озеро Барахтан',
+        text: 'Озеро вытянутой формы, словно затерянное в густом смешанном лесу из берёз и сосен. Плавучие островки-лабузы придают ему особый, таинственный шарм. Водится чебак, окунь, щука, линь и налим.',
+      },
+      {
+        icon: '💧',
+        title: 'Озеро Уфимское',
+        text: 'Гидрологический памятник природы. Именно отсюда берёт начало великая река Уфа. Вы сможете сказать, что бежали у самого истока одной из крупнейших рек региона!',
+      },
+      {
+        icon: '✨',
+        title: 'Озеро Серебры',
+        text: 'Главная «голубая жемчужина» Карабаша. С 1985 года — памятник природы и источник питьевой воды города. Серебристый оттенок — от слюдистых сланцев на дне. По берегам растёт редкая ягода — княженика.',
+      },
+    ],
+  },
+  {
+    id: 'trail45',
+    km: 45,
+    name: '45 км. Путь на Юрму',
+    shortDesc: 'Настоящий горный трейл с набором высоты 950 м. Покорение вершины-тысячника (гора Юрма, 1003 м) и трёх озёр.',
+    gain: 950,
+    color: '#ef4444',
+    icon: 'Mountain',
+    fullDesc: [
+      'Старт, как и у всех дистанций, на главной площади города Карабаша. Но уже на первых километрах вы окажетесь в самом сердце уральской тайги.',
+    ],
+    highlights: [
+      {
+        icon: '🏔️',
+        title: 'Покорение вершины-тысячника',
+        text: 'Главная цель — гора Юрма, 1003 м над уровнем моря. Самая северная вершина национального парка «Таганай» и северная граница Южного Урала. Общий набор высоты — почти 1000 м.',
+      },
+      {
+        icon: '🪨',
+        title: 'Скалы Чертовы Ворота',
+        text: 'Главная достопримечательность горы — причудливые скальные останцы на пути к вершине. Прикоснитесь к древней истории Уральских гор.',
+      },
+      {
+        icon: '🌊',
+        title: 'Три жемчужных озера',
+        text: 'Маршрут проведёт вас по цепочке из трёх удивительных озёр: Барахтан, Уфимское и Серебры.',
+      },
+    ],
+  },
+];
+
+const kidsDistances = [
+  { id: 'kids500', name: '500 м', age: 'с 3 до 7 лет', icon: 'Baby', color: '#a78bfa' },
+  { id: 'kids1k', name: '1 км', age: 'с 8 до 17 лет', icon: 'Star', color: '#a78bfa' },
+];
+
+// для секции Registration (оставляем совместимость)
 const distances = [
-  {
-    id: 'sprint', name: 'SPRINT', km: 10, gain: 450, color: '#22c55e',
-    icon: 'Zap', description: 'Идеальный старт для новичков в трейле. Живописные луга и первые горные виды.',
-    time: '1:30–3:00', difficulty: 'Лёгкая',
-  },
-  {
-    id: 'trail', name: 'TRAIL', km: 25, gain: 1200, color: '#f97316',
-    icon: 'Mountain', description: 'Классическая горная дистанция через хребты, ручьи и альпийские луга.',
-    time: '3:30–7:00', difficulty: 'Средняя',
-  },
-  {
-    id: 'ultra', name: 'ULTRA', km: 50, gain: 2800, color: '#ef4444',
-    icon: 'Flame', description: 'Для опытных ультраранеров. Ночная часть маршрута, технические участки.',
-    time: '8:00–16:00', difficulty: 'Сложная',
-  },
-  {
-    id: 'sky', name: 'SKY RACE', km: 80, gain: 5200, color: '#a855f7',
-    icon: 'Sunrise', description: 'Элитная дистанция. Три вершины выше 3000м. Только для квалифицированных.',
-    time: '14:00–28:00', difficulty: 'Экстрим',
-  },
+  { id: 'mile', name: '1 МИЛЯ', km: 1.6 },
+  { id: '5k', name: '5 КМ', km: 5 },
+  { id: '10k', name: '10 КМ', km: 10 },
+  { id: 'half', name: '21,1 КМ', km: 21.1 },
+  { id: 'trail25', name: '25 КМ ТРЕЙЛ', km: 25 },
+  { id: 'trail45', name: '45 КМ ТРЕЙЛ', km: 45 },
 ];
 
 const schedule = [
@@ -231,78 +291,214 @@ function Hero() {
   );
 }
 
+// ---------- TRAIL MODAL ----------
+interface TrailModalProps {
+  trail: typeof trailDistances[0] | null;
+  onClose: () => void;
+}
+function TrailModal({ trail, onClose }: TrailModalProps) {
+  useEffect(() => {
+    if (!trail) return;
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', handler);
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', handler); document.body.style.overflow = ''; };
+  }, [trail, onClose]);
+
+  if (!trail) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      style={{ backgroundColor: 'rgba(0,0,0,0.85)' }}
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+        style={{ backgroundColor: '#111', border: `1px solid ${trail.color}40` }}
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Top accent */}
+        <div className="h-1 w-full" style={{ backgroundColor: trail.color }} />
+
+        <div className="p-8">
+          <button
+            onClick={onClose}
+            className="absolute top-5 right-5 text-white/40 hover:text-white transition-colors"
+          >
+            <Icon name="X" size={20} />
+          </button>
+
+          <div className="flex items-center gap-3 mb-2">
+            <Icon name="Mountain" size={22} style={{ color: trail.color }} fallback="Mountain" />
+            <span className="font-golos text-xs uppercase tracking-widest" style={{ color: trail.color }}>
+              Трейл · {trail.gain} м набор высоты
+            </span>
+          </div>
+
+          <h3 className="font-oswald text-3xl font-bold text-white uppercase mb-4 leading-tight">
+            {trail.name}
+          </h3>
+
+          {trail.fullDesc.map((p, i) => (
+            <p key={i} className="font-golos text-white/65 leading-relaxed mb-4 text-sm">{p}</p>
+          ))}
+
+          <div className="space-y-4 mt-6">
+            {trail.highlights.map(h => (
+              <div key={h.title} className="flex gap-4 p-4" style={{ backgroundColor: '#1a1a1a', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <span className="text-2xl flex-shrink-0 mt-0.5">{h.icon}</span>
+                <div>
+                  <div className="font-oswald text-white font-bold text-sm uppercase tracking-wide mb-1">{h.title}</div>
+                  <div className="font-golos text-white/55 text-sm leading-relaxed">{h.text}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 p-4 border-t border-white/8 flex items-center gap-2">
+            <Icon name="Info" size={14} style={{ color: '#f97316' }} />
+            <span className="font-golos text-white/40 text-xs">
+              Стоимость зависит от даты регистрации. Уточняйте на платформе.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ---------- DISTANCES ----------
 function Distances() {
-  const [active, setActive] = useState<string | null>(null);
+  const [modal, setModal] = useState<typeof trailDistances[0] | null>(null);
 
   return (
     <section id="distances" className="py-24" style={{ backgroundColor: '#0a0a0a' }}>
+      <TrailModal trail={modal} onClose={() => setModal(null)} />
+
       <div className="max-w-7xl mx-auto px-6">
-        <div className="reveal flex items-end justify-between mb-16 flex-wrap gap-4">
-          <div>
-            <span className="font-golos uppercase tracking-widest text-sm" style={{ color: '#f97316' }}>Выбери своё испытание</span>
-            <h2 className="font-oswald text-5xl md:text-6xl font-bold uppercase text-white mt-2">ДИСТАНЦИИ</h2>
-          </div>
-          <p className="font-golos text-white/50 max-w-sm text-sm leading-relaxed">
-            От первого трейла до элитного скайраннинга — каждый найдёт свою дистанцию.
+        {/* Header */}
+        <div className="reveal mb-16">
+          <span className="font-golos uppercase tracking-widest text-sm" style={{ color: '#f97316' }}>Участие</span>
+          <h2 className="font-oswald font-bold uppercase text-white mt-2 leading-tight" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}>
+            ДИСТАНЦИИ ДЛЯ КАЖДОГО:<br />
+            <span style={{ color: '#f97316' }}>ОТ НОВИЧКА ДО ПРОФИ</span>
+          </h2>
+          <p className="font-golos text-white/50 mt-3 max-w-xl text-sm leading-relaxed">
+            Шоссейные дистанции для любителей гладкого бега и трейлы для покорителей гор
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {distances.map((d, i) => (
-            <div
-              key={d.id}
-              className="reveal relative cursor-pointer transition-all duration-300 p-6"
-              style={{
-                transitionDelay: `${i * 80}ms`,
-                border: `1px solid ${active === d.id ? d.color : 'rgba(255,255,255,0.08)'}`,
-                backgroundColor: active === d.id ? '#1a1a1a' : '#111111',
-                transform: active === d.id ? 'translateY(-4px)' : 'none',
-              }}
-              onClick={() => setActive(active === d.id ? null : d.id)}
-            >
-              <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: d.color }} />
-
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-golos text-xs uppercase tracking-widest" style={{ color: d.color }}>{d.difficulty}</span>
-                <Icon name={d.icon as 'Zap'} size={20} fallback="Mountain" style={{ color: d.color }} />
-              </div>
-
-              <h3 className="font-oswald text-4xl font-bold text-white mb-1">{d.name}</h3>
-              <div className="font-oswald text-white/10 mb-4" style={{ fontSize: '3rem' }}>
-                {d.km}<span className="text-2xl">км</span>
-              </div>
-
-              <div className="space-y-2 mb-4">
-                {[
-                  { l: 'Дистанция', v: `${d.km} км` },
-                  { l: 'Набор высоты', v: `${d.gain.toLocaleString()} м` },
-                  { l: 'Время', v: d.time },
-                ].map(row => (
-                  <div key={row.l} className="flex justify-between text-sm">
-                    <span className="font-golos text-white/50">{row.l}</span>
-                    <span className="font-golos text-white font-medium">{row.v}</span>
-                  </div>
-                ))}
-              </div>
-
-              {active === d.id && (
-                <p className="font-golos text-white/60 text-sm leading-relaxed border-t border-white/10 pt-4 mt-4">
-                  {d.description}
-                </p>
-              )}
-
-              <button
-                className="mt-4 w-full py-2 text-sm font-oswald uppercase tracking-wider border transition-colors"
+        {/* ── БЛОК 1: Шоссейные ── */}
+        <div className="reveal mb-12">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-1 h-6" style={{ backgroundColor: '#60a5fa' }} />
+            <h3 className="font-oswald text-xl font-bold text-white uppercase tracking-wide">Взрослые шоссейные дистанции</h3>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {roadDistances.map((d, i) => (
+              <div
+                key={d.id}
+                className="reveal relative p-5 transition-all duration-200"
                 style={{
-                  borderColor: active === d.id ? d.color : 'rgba(255,255,255,0.1)',
-                  color: active === d.id ? d.color : 'rgba(255,255,255,0.4)',
+                  transitionDelay: `${i * 60}ms`,
+                  backgroundColor: '#111',
+                  border: '1px solid rgba(255,255,255,0.07)',
                 }}
               >
-                {active === d.id ? 'Скрыть' : 'Подробнее'}
-              </button>
-            </div>
-          ))}
+                <div className="absolute top-0 left-0 w-full h-0.5" style={{ backgroundColor: d.color }} />
+                <div className="font-oswald text-3xl font-bold text-white mb-1">{d.name}</div>
+                <div className="font-golos text-xs text-white/40 uppercase tracking-wide mb-4">{d.age}</div>
+                <div className="font-golos text-xs text-white/30 leading-relaxed">
+                  Стоимость зависит от даты регистрации. Уточняйте на платформе.
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── БЛОК 2: Трейлы ── */}
+        <div className="reveal mb-12">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-1 h-6" style={{ backgroundColor: '#f97316' }} />
+            <h3 className="font-oswald text-xl font-bold text-white uppercase tracking-wide">Трейловые дистанции</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {trailDistances.map((d, i) => (
+              <div
+                key={d.id}
+                className="reveal relative p-6 transition-all duration-300"
+                style={{
+                  transitionDelay: `${i * 100}ms`,
+                  backgroundColor: '#111',
+                  border: `1px solid rgba(255,255,255,0.07)`,
+                }}
+              >
+                <div className="absolute top-0 left-0 w-full h-0.5" style={{ backgroundColor: d.color }} />
+
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Icon name="Mountain" size={16} style={{ color: d.color }} fallback="Mountain" />
+                      <span className="font-golos text-xs uppercase tracking-widest" style={{ color: d.color }}>
+                        Трейл · набор {d.gain} м
+                      </span>
+                    </div>
+                    <h4 className="font-oswald text-2xl font-bold text-white uppercase leading-tight">{d.name}</h4>
+                  </div>
+                  <div className="font-oswald text-4xl font-bold flex-shrink-0" style={{ color: 'rgba(255,255,255,0.07)' }}>
+                    {d.km}
+                  </div>
+                </div>
+
+                <p className="font-golos text-white/55 text-sm leading-relaxed mb-5">{d.shortDesc}</p>
+
+                <div className="flex items-center justify-between gap-4">
+                  <span className="font-golos text-white/30 text-xs leading-relaxed max-w-xs">
+                    Стоимость зависит от даты регистрации. Уточняйте на платформе.
+                  </span>
+                  <button
+                    onClick={() => setModal(d)}
+                    className="flex-shrink-0 font-oswald text-sm font-bold uppercase tracking-wider px-5 py-2 transition-all hover:opacity-90"
+                    style={{ backgroundColor: d.color, color: '#000' }}
+                  >
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── БЛОК 3: Детские ── */}
+        <div className="reveal">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-1 h-6" style={{ backgroundColor: '#a78bfa' }} />
+            <h3 className="font-oswald text-xl font-bold text-white uppercase tracking-wide">Детские дистанции</h3>
+            <span className="font-golos text-xs uppercase tracking-widest px-3 py-1 font-bold" style={{ backgroundColor: 'rgba(167,139,250,0.15)', color: '#a78bfa', border: '1px solid rgba(167,139,250,0.3)' }}>
+              Бесплатно
+            </span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
+            {kidsDistances.map((d, i) => (
+              <div
+                key={d.id}
+                className="reveal relative p-5 transition-all duration-200"
+                style={{
+                  transitionDelay: `${i * 60}ms`,
+                  backgroundColor: '#111',
+                  border: '1px solid rgba(167,139,250,0.12)',
+                }}
+              >
+                <div className="absolute top-0 left-0 w-full h-0.5" style={{ backgroundColor: d.color }} />
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-lg">{d.icon === 'Baby' ? '👶' : '⭐'}</span>
+                  <div className="font-oswald text-2xl font-bold text-white">{d.name}</div>
+                </div>
+                <div className="font-golos text-xs text-white/40 uppercase tracking-wide">{d.age}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
