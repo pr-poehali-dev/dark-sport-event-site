@@ -4,11 +4,54 @@ import Icon from '@/components/ui/icon';
 const HERO_IMG = "https://cdn.poehali.dev/projects/2470a998-bb78-4c10-ae3f-eaf1e3d86bc3/files/e71e398d-4128-4953-bb73-d00c6ed750e6.jpg";
 
 // ---------- DATA ----------
-const roadDistances = [
-  { id: 'mile', name: '1 миля', age: 'с 18 лет', icon: 'Footprints', color: '#60a5fa' },
-  { id: '5k', name: '5 км', age: 'с 14 лет', icon: 'Footprints', color: '#60a5fa' },
-  { id: '10k', name: '10 км', age: 'с 18 лет', icon: 'Footprints', color: '#60a5fa' },
-  { id: 'half', name: '21,1 км', age: 'с 18 лет', icon: 'Footprints', color: '#60a5fa' },
+interface SimpleDistance {
+  id: string;
+  name: string;
+  age: string;
+  icon: string;
+  color: string;
+  type: 'road' | 'kids';
+  shortDesc: string;
+  highlights: { icon: string; title: string; text: string }[];
+}
+
+const roadDistances: SimpleDistance[] = [
+  {
+    id: 'mile', name: '1 миля', age: 'с 18 лет', icon: 'Footprints', color: '#60a5fa', type: 'road',
+    shortDesc: 'Самая короткая взрослая дистанция — отличный способ попробовать силы в соревновательном беге. Шоссейная трасса, ровное покрытие, быстрый старт.',
+    highlights: [
+      { icon: '🏁', title: 'Формат', text: 'Шоссейный бег по улицам города Карабаша. Трасса полностью размечена, судьи на каждом повороте.' },
+      { icon: '👟', title: 'Снаряжение', text: 'Беговые кроссовки для шоссе. Стартовый номер выдаётся при регистрации.' },
+      { icon: '🏆', title: 'Награждение', text: 'Призёры в возрастных группах получают медали и дипломы. Все финишёры — памятный сертификат.' },
+    ],
+  },
+  {
+    id: '5k', name: '5 км', age: 'с 14 лет', icon: 'Footprints', color: '#60a5fa', type: 'road',
+    shortDesc: 'Классическая «пятёрка» — идеальная дистанция для первого старта. Доступна с 14 лет, подходит для подготовленных школьников и любителей.',
+    highlights: [
+      { icon: '🏁', title: 'Формат', text: 'Шоссейный бег по размеченной трассе в черте города. Плоский рельеф, асфальтовое покрытие.' },
+      { icon: '👟', title: 'Снаряжение', text: 'Беговые кроссовки, удобная форма. Стартовый номер обязателен.' },
+      { icon: '🏆', title: 'Награждение', text: 'Призёры в категориях получают медали. Все финишёры — сертификат участника.' },
+    ],
+  },
+  {
+    id: '10k', name: '10 км', age: 'с 18 лет', icon: 'Footprints', color: '#60a5fa', type: 'road',
+    shortDesc: 'Популярнейшая дистанция для любителей бега. Требует базовой подготовки, но доступна большинству регулярно бегающих участников.',
+    highlights: [
+      { icon: '🏁', title: 'Формат', text: 'Шоссейный бег по улицам Карабаша. Трасса сертифицирована, хронометраж чиповый.' },
+      { icon: '👟', title: 'Снаряжение', text: 'Беговые кроссовки, спортивная форма. Рекомендуем небольшой запас воды.' },
+      { icon: '🏆', title: 'Награждение', text: 'Призёры в возрастных категориях и абсолютном зачёте. Медаль финишёра для всех.' },
+    ],
+  },
+  {
+    id: 'half', name: '21,1 км', age: 'с 18 лет', icon: 'Footprints', color: '#60a5fa', type: 'road',
+    shortDesc: 'Полумарафон — серьёзный вызов для любителей бега. Требует регулярных тренировок в течение нескольких месяцев, но даёт огромное чувство победы на финише.',
+    highlights: [
+      { icon: '🏁', title: 'Формат', text: 'Сертифицированная шоссейная трасса 21,1 км. Чиповый хронометраж, официальный результат.' },
+      { icon: '💧', title: 'Питательные пункты', text: 'Вода и изотоник на 7-м и 14-м км. Рекомендуем использовать гели для поддержания темпа.' },
+      { icon: '🏆', title: 'Награждение', text: 'Медаль финишёра, диплом с результатом, призы в возрастных категориях. RUNEC-рейтинг.' },
+    ],
+  },
 ];
 
 const trailDistances = [
@@ -72,9 +115,25 @@ const trailDistances = [
   },
 ];
 
-const kidsDistances = [
-  { id: 'kids500', name: '500 м', age: 'с 3 до 7 лет', icon: 'Baby', color: '#a78bfa' },
-  { id: 'kids1k', name: '1 км', age: 'с 8 до 17 лет', icon: 'Star', color: '#a78bfa' },
+const kidsDistances: SimpleDistance[] = [
+  {
+    id: 'kids500', name: '500 м', age: 'с 3 до 7 лет', icon: 'Baby', color: '#a78bfa', type: 'kids',
+    shortDesc: 'Первый беговой старт для самых маленьких! Весёлая и безопасная дистанция для детей от 3 до 7 лет. Участие бесплатное.',
+    highlights: [
+      { icon: '🎈', title: 'Для малышей', text: 'Дистанция 500 метров проходит по безопасной размеченной трассе рядом с финишной зоной. Родители могут сопровождать ребёнка.' },
+      { icon: '🎁', title: 'Подарок каждому', text: 'Все участники получают медаль финишёра и сладкий подарок. Никаких проигравших — все победители!' },
+      { icon: '✅', title: 'Участие бесплатно', text: 'Регистрация детей бесплатная. Необходимо согласие родителя или законного представителя.' },
+    ],
+  },
+  {
+    id: 'kids1k', name: '1 км', age: 'с 8 до 17 лет', icon: 'Star', color: '#a78bfa', type: 'kids',
+    shortDesc: 'Настоящий старт для юных спортсменов! Километровая дистанция для детей и подростков от 8 до 17 лет. Участие бесплатное.',
+    highlights: [
+      { icon: '🏃', title: 'Для юных бегунов', text: 'Трасса 1 км по шоссе рядом с основным финишем. Чиповый хронометраж, официальный результат в протоколе.' },
+      { icon: '🏅', title: 'Медали и призы', text: 'Все финишёры получают именную медаль. Призёры в возрастных группах (8–12 и 13–17 лет) — дипломы и призы от спонсоров.' },
+      { icon: '✅', title: 'Участие бесплатно', text: 'Регистрация детей бесплатная. Для участников до 14 лет необходимо присутствие родителя.' },
+    ],
+  },
 ];
 
 // для секции Registration (оставляем совместимость)
@@ -291,61 +350,79 @@ function Hero() {
   );
 }
 
-// ---------- TRAIL MODAL ----------
-interface TrailModalProps {
-  trail: typeof trailDistances[0] | null;
+// ---------- UNIVERSAL MODAL ----------
+type AnyDistance = typeof trailDistances[0] | SimpleDistance;
+
+interface DistanceModalProps {
+  item: AnyDistance | null;
   onClose: () => void;
 }
-function TrailModal({ trail, onClose }: TrailModalProps) {
+function DistanceModal({ item, onClose }: DistanceModalProps) {
   useEffect(() => {
-    if (!trail) return;
+    if (!item) return;
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', handler);
     document.body.style.overflow = 'hidden';
     return () => { document.removeEventListener('keydown', handler); document.body.style.overflow = ''; };
-  }, [trail, onClose]);
+  }, [item, onClose]);
 
-  if (!trail) return null;
+  if (!item) return null;
+
+  const isTrail = 'fullDesc' in item;
+  const isKids = 'type' in item && (item as SimpleDistance).type === 'kids';
 
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-      style={{ backgroundColor: 'rgba(0,0,0,0.85)' }}
+      style={{ backgroundColor: 'rgba(0,0,0,0.88)' }}
       onClick={onClose}
     >
       <div
         className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto"
-        style={{ backgroundColor: '#111', border: `1px solid ${trail.color}40` }}
+        style={{ backgroundColor: '#111', border: `1px solid ${item.color}35` }}
         onClick={e => e.stopPropagation()}
       >
-        {/* Top accent */}
-        <div className="h-1 w-full" style={{ backgroundColor: trail.color }} />
+        <div className="h-1 w-full" style={{ backgroundColor: item.color }} />
 
         <div className="p-8">
-          <button
-            onClick={onClose}
-            className="absolute top-5 right-5 text-white/40 hover:text-white transition-colors"
-          >
+          <button onClick={onClose} className="absolute top-5 right-5 text-white/40 hover:text-white transition-colors">
             <Icon name="X" size={20} />
           </button>
 
-          <div className="flex items-center gap-3 mb-2">
-            <Icon name="Mountain" size={22} style={{ color: trail.color }} fallback="Mountain" />
-            <span className="font-golos text-xs uppercase tracking-widest" style={{ color: trail.color }}>
-              Трейл · {trail.gain} м набор высоты
+          {/* Badge */}
+          <div className="flex items-center gap-2 mb-3">
+            <Icon
+              name={isTrail ? 'Mountain' : isKids ? 'Star' : 'Footprints'}
+              size={18}
+              style={{ color: item.color }}
+              fallback="Circle"
+            />
+            <span className="font-golos text-xs uppercase tracking-widest font-medium" style={{ color: item.color }}>
+              {isTrail
+                ? `Трейл · набор ${'gain' in item ? item.gain : ''} м`
+                : isKids
+                  ? `Детская дистанция · ${'age' in item ? (item as SimpleDistance).age : ''} · Бесплатно`
+                  : `Шоссейный бег · ${'age' in item ? (item as SimpleDistance).age : ''}`
+              }
             </span>
           </div>
 
-          <h3 className="font-oswald text-3xl font-bold text-white uppercase mb-4 leading-tight">
-            {trail.name}
+          <h3 className="font-oswald text-3xl font-bold text-white uppercase mb-3 leading-tight">
+            {item.name}
           </h3>
 
-          {trail.fullDesc.map((p, i) => (
+          <p className="font-golos text-white/60 text-sm leading-relaxed mb-6">
+            {'shortDesc' in item ? item.shortDesc : ''}
+          </p>
+
+          {/* Full desc for trails */}
+          {isTrail && 'fullDesc' in item && item.fullDesc.map((p: string, i: number) => (
             <p key={i} className="font-golos text-white/65 leading-relaxed mb-4 text-sm">{p}</p>
           ))}
 
-          <div className="space-y-4 mt-6">
-            {trail.highlights.map(h => (
+          {/* Highlights */}
+          <div className="space-y-3">
+            {item.highlights.map(h => (
               <div key={h.title} className="flex gap-4 p-4" style={{ backgroundColor: '#1a1a1a', border: '1px solid rgba(255,255,255,0.06)' }}>
                 <span className="text-2xl flex-shrink-0 mt-0.5">{h.icon}</span>
                 <div>
@@ -356,10 +433,10 @@ function TrailModal({ trail, onClose }: TrailModalProps) {
             ))}
           </div>
 
-          <div className="mt-6 p-4 border-t border-white/8 flex items-center gap-2">
+          <div className="mt-6 pt-4 flex items-center gap-2" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
             <Icon name="Info" size={14} style={{ color: '#f97316' }} />
-            <span className="font-golos text-white/40 text-xs">
-              Стоимость зависит от даты регистрации. Уточняйте на платформе.
+            <span className="font-golos text-white/35 text-xs">
+              {isKids ? 'Участие бесплатное. Регистрация обязательна.' : 'Стоимость зависит от даты регистрации. Уточняйте на платформе.'}
             </span>
           </div>
         </div>
@@ -370,11 +447,11 @@ function TrailModal({ trail, onClose }: TrailModalProps) {
 
 // ---------- DISTANCES ----------
 function Distances() {
-  const [modal, setModal] = useState<typeof trailDistances[0] | null>(null);
+  const [modal, setModal] = useState<AnyDistance | null>(null);
 
   return (
     <section id="distances" className="py-24" style={{ backgroundColor: '#0a0a0a' }}>
-      <TrailModal trail={modal} onClose={() => setModal(null)} />
+      <DistanceModal item={modal} onClose={() => setModal(null)} />
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
@@ -399,7 +476,7 @@ function Distances() {
             {roadDistances.map((d, i) => (
               <div
                 key={d.id}
-                className="reveal relative p-5 transition-all duration-200"
+                className="reveal relative p-5 flex flex-col transition-all duration-200"
                 style={{
                   transitionDelay: `${i * 60}ms`,
                   backgroundColor: '#111',
@@ -408,10 +485,17 @@ function Distances() {
               >
                 <div className="absolute top-0 left-0 w-full h-0.5" style={{ backgroundColor: d.color }} />
                 <div className="font-oswald text-3xl font-bold text-white mb-1">{d.name}</div>
-                <div className="font-golos text-xs text-white/40 uppercase tracking-wide mb-4">{d.age}</div>
-                <div className="font-golos text-xs text-white/30 leading-relaxed">
+                <div className="font-golos text-xs text-white/40 uppercase tracking-wide mb-3">{d.age}</div>
+                <div className="font-golos text-xs text-white/25 leading-relaxed mb-4 flex-1">
                   Стоимость зависит от даты регистрации. Уточняйте на платформе.
                 </div>
+                <button
+                  onClick={() => setModal(d)}
+                  className="w-full py-2 text-xs font-oswald uppercase tracking-wider border transition-all hover:opacity-80"
+                  style={{ borderColor: `${d.color}50`, color: d.color }}
+                >
+                  Подробнее
+                </button>
               </div>
             ))}
           </div>
@@ -483,7 +567,7 @@ function Distances() {
             {kidsDistances.map((d, i) => (
               <div
                 key={d.id}
-                className="reveal relative p-5 transition-all duration-200"
+                className="reveal relative p-5 flex flex-col transition-all duration-200"
                 style={{
                   transitionDelay: `${i * 60}ms`,
                   backgroundColor: '#111',
@@ -495,7 +579,14 @@ function Distances() {
                   <span className="text-lg">{d.icon === 'Baby' ? '👶' : '⭐'}</span>
                   <div className="font-oswald text-2xl font-bold text-white">{d.name}</div>
                 </div>
-                <div className="font-golos text-xs text-white/40 uppercase tracking-wide">{d.age}</div>
+                <div className="font-golos text-xs text-white/40 uppercase tracking-wide mb-4">{d.age}</div>
+                <button
+                  onClick={() => setModal(d)}
+                  className="mt-auto w-full py-2 text-xs font-oswald uppercase tracking-wider border transition-all hover:opacity-80"
+                  style={{ borderColor: `${d.color}50`, color: d.color }}
+                >
+                  Подробнее
+                </button>
               </div>
             ))}
           </div>
