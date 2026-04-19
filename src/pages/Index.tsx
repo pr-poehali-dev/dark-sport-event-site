@@ -258,7 +258,7 @@ function Navbar() {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-black/95 backdrop-blur-sm border-b border-white/5' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="font-oswald text-xl font-bold tracking-widest">
-          PEAK<span style={{ color: '#f97316' }}>RUN</span>
+          МАРАФОН <span style={{ color: '#f97316' }}>КАРАБАШ</span>
         </a>
         <div className="hidden md:flex items-center gap-8">
           {links.map(l => (
@@ -307,11 +307,11 @@ function Hero() {
             </span>
           </div>
 
-          <h1 className="font-oswald font-bold uppercase leading-none mb-4" style={{ fontSize: 'clamp(4rem, 12vw, 9rem)' }}>
-            PEAK
+          <h1 className="font-oswald font-bold uppercase leading-none mb-4" style={{ fontSize: 'clamp(3rem, 9vw, 7rem)' }}>
+            МАРАФОН
             <br />
-            <span style={{ color: '#f97316' }}>RUN</span>
-            <span className="text-white/20 ml-4" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}>2026</span>
+            <span style={{ color: '#f97316' }}>КАРАБАШ</span>
+            <span className="text-white/20 ml-4" style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}>2026</span>
           </h1>
 
           <p className="font-golos text-white/70 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
@@ -712,7 +712,7 @@ function Kit() {
               icon: 'Package', title: 'Стартовый пакет', accent: false,
               items: [
                 'Именной стартовый номер',
-                'Фирменная футболка PEAK RUN 2026',
+                'Фирменная футболка Марафон Карабаш 2026',
                 'Брендовый слаломный мешок',
                 'Питание на контрольных пунктах',
                 'Хронометраж с личным результатом',
@@ -1087,7 +1087,7 @@ function Partners() {
     <section id="partners" className="py-20 border-t" style={{ backgroundColor: '#0a0a0a', borderColor: 'rgba(255,255,255,0.05)' }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="reveal text-center mb-12">
-          <span className="font-golos text-white/30 uppercase tracking-widest text-sm">Партнёры PEAK RUN 2026</span>
+          <span className="font-golos text-white/30 uppercase tracking-widest text-sm">Партнёры Марафона Карабаш 2026</span>
         </div>
         <div className="reveal flex flex-wrap justify-center items-center gap-10">
           {partners.map(p => (
@@ -1174,7 +1174,7 @@ function Footer() {
     <footer className="py-8 border-t" style={{ backgroundColor: '#000', borderColor: 'rgba(255,255,255,0.05)' }}>
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="font-oswald text-xl font-bold tracking-widest">
-          PEAK<span style={{ color: '#f97316' }}>RUN</span>
+          МАРАФОН <span style={{ color: '#f97316' }}>КАРАБАШ</span>
           <span className="font-golos text-white/20 text-sm font-normal ml-2 tracking-normal">2026</span>
         </div>
         <nav className="flex flex-wrap gap-6 justify-center">
@@ -1189,7 +1189,7 @@ function Footer() {
             </a>
           ))}
         </nav>
-        <div className="font-golos text-white/20 text-xs">© 2026 PEAK RUN</div>
+        <div className="font-golos text-white/20 text-xs">© 2026 Марафон Карабаш</div>
       </div>
     </footer>
   );
